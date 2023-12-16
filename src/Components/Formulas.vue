@@ -15,7 +15,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 
-const props = defineProps(['resetResult', 'selectedOperation']);
+const props = defineProps(['selectedOperation']);
 
 
 const firstNumber = ref(0);
@@ -43,12 +43,16 @@ const calculateResult = () => {
         default:
             result.value = '';
     }
-
-
 };
+const resetResult = ()=>{
+    firstNumber.value = 0,
+    secondNumber.value = 0,
+    result.value = 0
+}
 
-watch(() => props.selectedOperation, (newValue) => {
-    console.log('selectedOperation changed:', newValue);
+watch(() => props.selectedOperation, () => {
+    resetResult()
 });
+
 
 </script>
